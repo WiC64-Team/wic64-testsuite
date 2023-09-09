@@ -73,7 +73,8 @@ test_echo !zone test_echo {
     +wic64_initialize
 
     +status .sending, status_echo
-    +wic64_send request
+    +wic64_send_request_header request
+    +wic64_send
 
     +status .receiving, status_echo
     +wic64_receive_response_header

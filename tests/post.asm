@@ -92,7 +92,8 @@ test_post !zone test_post {
     +wic64_initialize
 
     +status .sending, status_post
-    +wic64_send request
+    +wic64_send_request_header request
+    +wic64_send
 
     +status .receiving, status_post
     +wic64_receive_response_header
