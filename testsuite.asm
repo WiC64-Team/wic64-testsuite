@@ -14,6 +14,9 @@ roff = $92
 * = $0810
 jmp setup
 
+!src "wic64.asm"
+!src "util.asm"
+
 key_none  !byte %00000000, %11111111
 key_one   !byte %01111111, %00000001
 key_two   !byte %01111111, %00001000
@@ -21,9 +24,6 @@ key_three !byte %11111101, %00000001
 key_four  !byte %11111101, %00001000
 key_five  !byte %11111011, %00000001
 key_stop  !byte %01111111, %10000000
-
-!src "wic64.asm"
-!src "util.asm"
 
 setup !zone setup {
     sei

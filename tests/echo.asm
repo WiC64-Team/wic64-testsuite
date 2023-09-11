@@ -73,11 +73,11 @@ test_echo !zone test_echo {
     +wic64_initialize
 
     +status .sending, status_echo
-    +wic64_send_request_header request
+    +wic64_send_header request
     +wic64_send
 
     +status .receiving, status_echo
-    +wic64_receive_response_header
+    +wic64_receive_header
     +wic64_receive response
 
     +wic64_finalize
@@ -163,7 +163,7 @@ status_echo !zone status_echo {
     rts
 
 .text
-!text "wIc64 tEST: dATA tRANSFER (eCHO $FF)", $0d
+!text "wIc64 tEST: dATA tRANSFER (eCHO $FE)", $0d
 !text $0d
 !text "           $  00 BYTES OF RANDOM DATA", $0d
 !text $0d
