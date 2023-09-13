@@ -1,4 +1,4 @@
-!addr zp1 = $22
+!addr zp1 = $24
 !addr zp2 = $50
 
 !addr random_byte = $d41b

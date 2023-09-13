@@ -79,8 +79,8 @@ get_info !zone wifi_info {
 
     ldy #$40  ; max length of SSID (63) + 1 nullbyte
     lda #$00
-    +pointer wic64_response_pointer, response
--   sta (wic64_response_pointer),y
+    +pointer zp1, response
+-   sta (zp1),y
     dey
     bne -
 

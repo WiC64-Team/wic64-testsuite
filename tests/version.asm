@@ -86,8 +86,8 @@ test_version !zone test_version {
 
     ldy #$00
     lda #$00
-    +pointer wic64_response_pointer, response
--   sta (wic64_response_pointer),y
+    +pointer zp1, response
+-   sta (zp1),y
     dey
     bne -
 
