@@ -5,6 +5,7 @@
 
 red = $1c
 green = $1e
+yellow = $9e
 ron = $12
 roff = $92
 
@@ -151,6 +152,11 @@ verify_error_text
 
 timeout_error_text
 !text red, "       => tRANSFER TIMED OUT <=", green, $0d, $0d, $00
+
+server_error_text
+!text yellow, "          => sERVER eRROR <=", $0d, $0d
+!text " dON'T WORRY, THIS CAN HAPPEN ANY TIME", $0d
+!text " iT DOES not MEAN THAT THE TEST FAILED", $0d, $0d, green, $00
 
 restart_or_return_text
 !text "  -- pRESS any key TO RESTART TEST --", $0d

@@ -28,9 +28,16 @@ test_post !zone test_post {
     jsr .post
     bcs .timed_out
 
-    ; TODO: Test for error reply
+    lda wic64_response_size+1
+    bne +
+    lda wic64_response_size
+    cmp #$02
+    bcc +
 
-    jsr .verify
+    +print server_error_text
+    jmp .prompt
+
++   jsr .verify
     bcc .next_iteration
 
     +print verify_error_text
@@ -182,7 +189,7 @@ status_post !zone status_post {
     rts
 
 .text
-!text "wIc64 tEST: http post ($24)", $0d
+!text "wIc64 tEST: http post ($28)", $0d
 !text $0d
 !text "           $  00 BYTES OF RANDOM DATA", $0d
 !text $0d

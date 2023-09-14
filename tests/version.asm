@@ -82,8 +82,6 @@ test_version !zone test_version {
 
 .get_version !zone get_version {
     ; null response buffer
-    ; REDESIGN: always include terminating nullbyte when sending strings
-
     ldy #$00
     lda #$00
     +pointer zp1, response
