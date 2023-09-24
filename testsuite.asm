@@ -15,6 +15,7 @@ roff = $92
 * = $0810
 jmp setup
 
+!src "wic64.h"
 !src "wic64.asm"
 !src "util.asm"
 
