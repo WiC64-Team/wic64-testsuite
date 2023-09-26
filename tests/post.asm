@@ -208,7 +208,7 @@ status_post !zone status_post {
 .task !16 $0000
 }
 
-post_url !text "http://www.henning-liebenau.de/post-echo.php"
+post_url !text "http://x.wic64.net/test/post-echo.php"
 !byte $00
 post_url_end
 
