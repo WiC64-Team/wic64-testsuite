@@ -31,7 +31,7 @@ test_echo !zone test_echo {
 
 .randomize !zone randomize {
     ; calculate a random payload size up to 16kb
-    lda #$04
+    lda #$00
     sta request_size
 -   lda random_byte
     beq -
@@ -50,7 +50,7 @@ test_echo !zone test_echo {
 
 .next_byte
     lda random_byte
-    sta (zp1),Y
+    sta (zp1),y
     dey
     bne .next_byte
     inc zp1+1

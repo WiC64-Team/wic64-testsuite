@@ -6,10 +6,8 @@ test_version !zone test_version {
 
     +print .text_string
 
-    lda #$04
-    sta request_size
-
     lda #$00
+    sta request_size
     sta request_size+1
 
     lda #$00
@@ -80,7 +78,7 @@ test_version !zone test_version {
 .text_devel
 !text "dEVEL: $", $00
 
-.get_version !zone get_version {
+.get_version:
     ; null response buffer
     ldy #$00
     lda #$00
@@ -91,6 +89,5 @@ test_version !zone test_version {
 
     +wic64_execute request, response
     rts
-}
 
 } // !zone test_version

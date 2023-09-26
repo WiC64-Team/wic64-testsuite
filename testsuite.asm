@@ -15,8 +15,10 @@ roff = $92
 * = $0810
 jmp setup
 
+wic64_include_return_to_portal = 1
 !src "wic64.h"
 !src "wic64.asm"
+
 !src "util.asm"
 
 key_none  !byte %00000000, %11111111
@@ -130,6 +132,12 @@ menu !zone menu {
     jsr test_version
     jmp menu
 
++   +scan key_five
+    beq +
+
+    +wic64_return_to_portal
+    jmp menu
+
 +   jmp .scan
 
 .menu_title
@@ -140,6 +148,7 @@ menu !zone menu {
 !text ron, "2", roff, " gET wIfI iNFO", $0d
 !text ron, "3", roff, " hTTP post REQUEST", $0d
 !text ron, "4", roff, " gET FIRMWARE VERSION", $0d
+!text ron, "5", roff, " rETURN TO PORTAL", $0d
 !byte $00
 }
 
@@ -168,9 +177,9 @@ restore_text
 iterations !byte $00, $00, $00, $00
 
 request
-request_api  !text "W"
-request_size !byte $00, $00
+request_api  !text "R"
 request_id   !byte $00
+request_size !word $0000
 request_data ; Up to 16kb of random payload data + one extra page for post url
 
 * = * + $4100

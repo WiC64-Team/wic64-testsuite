@@ -84,10 +84,8 @@ get_info !zone wifi_info {
     dey
     bne -
 
-    lda #$04
-    sta request_size
-
     lda #$00
+    sta request_size
     sta request_size+1
 
     +wic64_execute request, response

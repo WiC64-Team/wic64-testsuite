@@ -51,7 +51,7 @@ test_post !zone test_post {
 
 .randomize !zone randomize {
     ; calculate a random payload size up to 16kb
-    lda #$04
+    lda #$00
     sta request_size
 -   lda random_byte
     beq -
