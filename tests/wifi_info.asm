@@ -72,18 +72,6 @@ test_wifi_info !zone test_wifi_info {
 !text "mac : ", $00
 
 get_info !zone wifi_info {
-    ; need to null the response buffer
-    ; because strings are always send WITHOUT
-    ; a terminating nullbyte by the original
-    ; firmware...
-
-    ldy #$40  ; max length of SSID (63) + 1 nullbyte
-    lda #$00
-    +pointer zp1, response
--   sta (zp1),y
-    dey
-    bne -
-
     lda #$00
     sta request_size
     sta request_size+1

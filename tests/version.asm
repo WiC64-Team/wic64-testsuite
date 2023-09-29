@@ -79,14 +79,6 @@ test_version !zone test_version {
 !text "dEVEL: $", $00
 
 .get_version:
-    ; null response buffer
-    ldy #$00
-    lda #$00
-    +pointer zp1, response
--   sta (zp1),y
-    dey
-    bne -
-
     +wic64_execute request, response
     rts
 
