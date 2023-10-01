@@ -59,24 +59,24 @@ test_version !zone test_version {
     +restart_or_return_prompt .restart
 
 .text
-!text "wIc64 tEST: vERSION ($00, $26)", $0d
-!text $0d
-!text $00
+!pet "WiC64 Test: Version ($00, $26)", $0d
+!pet $0d
+!pet $00
 
 .text_string
-!text "sTRING: ", $00
+!pet "String: ", $00
 
 .text_major
-!text "mAJOR: $", $00
+!pet "Major: $", $00
 
 .text_minor
-!text "mINOR: $", $00
+!pet "Minor: $", $00
 
 .text_patch
-!text "pATCH: $", $00
+!pet "Patch: $", $00
 
 .text_devel
-!text "dEVEL: $", $00
+!pet "Devel: $", $00
 
 .get_version:
     +wic64_execute request, response

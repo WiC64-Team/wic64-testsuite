@@ -85,7 +85,7 @@ test_post !zone test_post {
     bcc +
     inc request_size+1
 +   rts
-.generating !text "gENERATING", $00
+.generating !pet "Generating", $00
 }
 
 .post !zone post {
@@ -114,8 +114,8 @@ test_post !zone test_post {
     sta $d020
     rts
 
-.sending !text "pOSTING   ", $00
-.receiving !text "rECEIVING ", $00
+.sending !pet "Posting   ", $00
+.receiving !pet "Receiving ", $00
 }
 
 .verify !zone verify {
@@ -147,7 +147,7 @@ test_post !zone test_post {
     sec
     rts
 
-.verifying !text "vERIFYING ", $00
+.verifying !pet "Verifying ", $00
 }
 
 status_post !zone status_post {
@@ -189,22 +189,22 @@ status_post !zone status_post {
     rts
 
 .text
-!text "wIc64 tEST: http post ($28)", $0d
-!text $0d
-!text "           $  00 BYTES OF RANDOM DATA", $0d
-!text $0d
-!text "$       SUCCESSFUL POST REQUESTS", $0d
-!text $0d
-!text $0d
-!text "-- tHIS TEST SHOULD RUN INDEFINITELY --", $0d
-!text $0d
-!text $0d
-!text "iF THE esp IS RESET, THIS TEST SHOULD", $0d
-!text "TIME OUT AFTER APPROX. FOUR SECONDS.", $0d
-!text $0d
-!text "iF THIS TEST IS ABORTED, THE esp SHOULD", $0d
-!text "TIME OUT AFTER APPROX. ONE SECOND.", $0d
-!text $00
+!pet "WiC64 Test: HTTP POST ($28)", $0d
+!pet $0d
+!pet "           $  00 bytes of random data", $0d
+!pet $0d
+!pet "$       successful post requests", $0d
+!pet $0d
+!pet $0d
+!pet "-- This test should run indefinitely --", $0d
+!pet $0d
+!pet $0d
+!pet "If the ESP is reset, this test should", $0d
+!pet "time out after approx. four seconds.", $0d
+!pet $0d
+!pet "If this test is aborted, the ESP should", $0d
+!pet "time out after approx. one second.", $0d
+!pet $00
 .task !16 $0000
 }
 

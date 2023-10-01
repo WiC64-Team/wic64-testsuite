@@ -158,21 +158,21 @@ menu !zone menu {
 !src "tests/version.asm"
 
 verify_error_text
-!text red, "          => vERIFY eRROR <=", green, $0d, $0d, $00
+!pet red, "          => Verify error <=", green, $0d, $0d, $00
 
 timeout_error_text
-!text red, "       => tRANSFER TIMED OUT <=", green, $0d, $0d, $00
+!pet red, "       => Transfer timed out <=", green, $0d, $0d, $00
 
 server_error_text
-!text yellow, "          => sERVER eRROR <=", $0d, $0d
-!text " dON'T WORRY, THIS CAN HAPPEN ANY TIME", $0d
-!text " iT DOES not MEAN THAT THE TEST FAILED", $0d, $0d, green, $00
+!pet yellow, "          => Server Error <=", $0d, $0d
+!pet " Don't worry, this can happen any time", $0d
+!pet " It does NOT mean that the test failed", $0d, $0d, green, $00
 
 restart_or_return_text
-!text "  -- pRESS any key TO RESTART TEST --", $0d
-!text $0d
+!pet "  -- Press ANY KEY to restart test --", $0d
+!pet $0d
 restore_text
-!text " -- pRESS restore TO RETURN TO MENU --", $00
+!pet " -- Press RESTORE to return to menu --", $00
 
 iterations !byte $00, $00, $00, $00
 

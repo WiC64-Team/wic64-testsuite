@@ -60,16 +60,16 @@ test_wifi_info !zone test_wifi_info {
     +restart_or_return_prompt .restart
 
 .text
-!text "wIc64 tEST: wIfI iNFO ($10,$11,$06,$14)", $0d
-!text $0d, $00
+!pet "WiC64 Test: WiFi Info ($10,$11,$06,$14)", $0d
+!pet $0d, $00
 .text_ssid
-!text "ssid: ", $00
+!pet "SSID: ", $00
 .text_rssi
-!text "rssi: ", $00
+!pet "RSSI: ", $00
 .text_ip
-!text "addr: ", $00
+!pet "ADDR: ", $00
 .text_mac
-!text "mac : ", $00
+!pet "MAC : ", $00
 
 get_info !zone wifi_info {
     lda #$00
