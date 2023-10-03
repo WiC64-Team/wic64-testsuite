@@ -32,17 +32,16 @@ key_stop  !byte %01111111, %10000000
 setup !zone setup {
     sei
 
+    ; stop all cia interrupts
+    lda #$7f
+    sta $dc0d
+    sta $dd0d
+
     ; setup nmi
     lda #<nmi
     sta $0318
     lda #>nmi
     sta $0319
-
-    ; setup irq
-    lda #<irq
-    sta $0314
-    lda #>irq
-    sta $0315
 
     ; init keyboard scanning
     lda #$ff
@@ -70,12 +69,6 @@ nmi !zone nmi {
 
 .menu
    +jmp_via_rti menu
-}
-
-irq !zone irq {
-    ; disable system irq to avoid kernal keyboard scans
-    lda $dc0d ; still need to ack interrupts, though
-    jmp $ea81 ; pull regs and rti
 }
 
 quit !zone quit {
@@ -141,14 +134,14 @@ menu !zone menu {
 +   jmp .scan
 
 .menu_title
-!text "wIc64 tESTSUITE", $00
+!pet "WiC64 Testsuite", $00
 
 .menu_text
-!text ron, "1", roff, " dATA tRANSFER", $0d
-!text ron, "2", roff, " gET wIfI iNFO", $0d
-!text ron, "3", roff, " hTTP post REQUEST", $0d
-!text ron, "4", roff, " gET FIRMWARE VERSION", $0d
-!text ron, "5", roff, " rETURN TO PORTAL", $0d
+!pet ron, "1", roff, " Data Transfer", $0d
+!pet ron, "2", roff, " Get WiFi Info", $0d
+!pet ron, "3", roff, " Http POST request", $0d
+!pet ron, "4", roff, " Get firmware version", $0d
+!pet ron, "5", roff, " Return to portal", $0d
 !byte $00
 }
 
