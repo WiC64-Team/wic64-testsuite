@@ -1,7 +1,7 @@
 ASM = acme
-ASMFLAGS = -f cbm -l main.sym -v3 --color -Wno-label-indent
+ASMFLAGS = -f cbm -l main.sym -v3 --color -Wno-label-indent -Dwic64_build_report=1
 INCLUDES = -I../wic64-library
-SOURCES = *.asm tests/*.asm ../wic64-library/wic64.asm
+SOURCES = *.asm tests/*.asm ../wic64-library/wic64.asm ../wic64-library/wic64.h
 EMU ?= x64sc
 EMUFLAGS ?=
 
