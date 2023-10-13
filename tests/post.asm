@@ -25,17 +25,10 @@ test_post !zone test_post {
 .next_iteration
     +inc24 iterations
     jsr .randomize
+
     jsr .post
     bcs .timed_out
-
-    lda wic64_response_size+1
-    bne +
-    lda wic64_response_size
-    cmp #$02
-    bcc +
-
-    +print server_error_text
-    jmp .prompt
+    bne .error
 
 +   jsr .verify
     bcc .next_iteration
@@ -45,6 +38,16 @@ test_post !zone test_post {
 
 .timed_out
     +print timeout_error_text
+    jmp .prompt
+
+.error
+    +wic64_execute status_request, response
+    bcs .timed_out
+
+    +print error_prefix_text
+    +print response
+    +paragraph
+    jmp .prompt
 
 .prompt
     +restart_or_return_prompt .restart
@@ -214,5 +217,7 @@ post_url_end
 
 post_url_length = post_url_end - post_url
 post_data = request_data + post_url_length
+
+status_request: !byte "R", $2a, $01, $00, $00
 
 } // !zone test_post

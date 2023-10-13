@@ -156,13 +156,11 @@ verify_error_text
 timeout_error_text
 !pet red, "       => Transfer timed out <=", green, $0d, $0d, $00
 
-server_error_text
-!pet yellow, "          => Server Error <=", $0d, $0d
-!pet " Don't worry, this can happen any time", $0d
-!pet " It does NOT mean that the test failed", $0d, $0d, green, $00
+error_prefix_text
+!pet red, "Error: ", $00
 
 restart_or_return_text
-!pet "  -- Press ANY KEY to restart test --", $0d
+!pet green, "  -- Press ANY KEY to restart test --", $0d
 !pet $0d
 restore_text
 !pet " -- Press RESTORE to return to menu --", $00
