@@ -11,16 +11,12 @@ test_post !zone test_post {
     sta iterations+1
     sta iterations+2
 
-    ; set post command id
-    lda #$28
-    sta request_id
+    +wic64_execute post_url_request, response
+    bcs .timed_out
+    bne .error
 
-    ; copy post url
-    ldx #post_url_length
--   lda post_url,x
-    sta request_data,x
-    dex
-    bpl -
+    lda #$2b
+    sta request_id
 
 .next_iteration
     +inc24 iterations
@@ -65,7 +61,7 @@ test_post !zone test_post {
     ; fill post_data with random bytes for size+1 pages
     +status .generating, status_post
 
-    +pointer zp1, post_data
+    +pointer zp1, request_data
     ldx request_size+1 ; num pages to fill
 
 .next_page
@@ -80,14 +76,7 @@ test_post !zone test_post {
     dex
     bne .next_page
 
-    ; now add length of post url to request size
-    clc
-    lda #post_url_length
-    adc request_size
-    sta request_size
-    bcc +
-    inc request_size+1
-+   rts
+    rts
 .generating !pet "Generating", $00
 }
 
@@ -123,7 +112,7 @@ test_post !zone test_post {
 
 .verify !zone verify {
     +status .verifying, status_post
-    +pointer zp1, post_data
+    +pointer zp1, request_data
     +pointer zp2, response
 
     ldy #$00
@@ -132,8 +121,8 @@ test_post !zone test_post {
     lda (zp1),y
     cmp (zp2),y
     bne .fail
-    +incw zp1
-    +incw zp2
+    +inc16 zp1
+    +inc16 zp2
     inx
     beq .next_page
     jmp .loop
@@ -192,7 +181,7 @@ status_post !zone status_post {
     rts
 
 .text
-!pet "WiC64 Test: HTTP POST ($28)", $0d
+!pet "WiC64 Test: HTTP POST ($28, $2B)", $0d
 !pet $0d
 !pet "           $  00 bytes of random data", $0d
 !pet $0d
@@ -211,12 +200,11 @@ status_post !zone status_post {
 .task !16 $0000
 }
 
+post_url_request: !byte "R", $28, <post_url_length, >post_url_length
 post_url !text "http://x.wic64.net/test/post-echo.php"
-!byte $00
 post_url_end
 
 post_url_length = post_url_end - post_url
-post_data = request_data + post_url_length
 
 status_request: !byte "R", $2a, $01, $00, $00
 

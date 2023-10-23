@@ -103,8 +103,8 @@ test_echo !zone test_echo {
     lda (zp1),y
     cmp (zp2),y
     bne .fail
-    +incw zp1
-    +incw zp2
+    +inc16 zp1
+    +inc16 zp2
     inx
     beq .next_page
     jmp .loop

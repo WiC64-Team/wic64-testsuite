@@ -27,6 +27,7 @@ key_two   !byte %01111111, %00001000
 key_three !byte %11111101, %00000001
 key_four  !byte %11111101, %00001000
 key_five  !byte %11111011, %00000001
+key_six   !byte %11111011, %00001000
 key_stop  !byte %01111111, %10000000
 
 setup !zone setup {
@@ -122,10 +123,16 @@ menu !zone menu {
 +   +scan key_four
     beq +
 
-    jsr test_version
+    jsr test_extended
     jmp menu
 
 +   +scan key_five
+    beq +
+
+    jsr test_version
+    jmp menu
+
++   +scan key_six
     beq +
 
     +wic64_return_to_portal
@@ -140,8 +147,9 @@ menu !zone menu {
 !pet ron, "1", roff, " Data Transfer", $0d
 !pet ron, "2", roff, " Get WiFi Info", $0d
 !pet ron, "3", roff, " Http POST request", $0d
-!pet ron, "4", roff, " Get firmware version", $0d
-!pet ron, "5", roff, " Return to portal", $0d
+!pet ron, "4", roff, " Large Http POST request", $0d
+!pet ron, "5", roff, " Get firmware version", $0d
+!pet ron, "6", roff, " Return to portal", $0d
 !byte $00
 }
 
@@ -149,6 +157,7 @@ menu !zone menu {
 !src "tests/wifi_info.asm"
 !src "tests/post.asm"
 !src "tests/version.asm"
+!src "tests/extended.asm"
 
 verify_error_text
 !pet red, "          => Verify error <=", green, $0d, $0d, $00
@@ -171,8 +180,8 @@ request
 request_api  !text "R"
 request_id   !byte $00
 request_size !word $0000
-request_data ; Up to 16kb of random payload data + one extra page for post url
+request_data ; Up to 16kb of random payload data
 
-* = * + $4100
+* = * + $4000
 
 response ; at least 16kb free for response data

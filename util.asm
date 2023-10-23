@@ -9,7 +9,7 @@
     stx .pointer+1
 }
 
-!macro incw .addr {
+!macro inc16 .addr {
     inc .addr
     bne .done
     inc .addr+1
@@ -226,6 +226,78 @@ hexprint !zone hexprint {
 .zp2 !word $0000
 .digits
     !text "0123456789ABCDEF"
+}
+
+print_dec !zone print_dec {
+    cmp #$00
+    bne .not_zero
+
+    lda #' '
+    jsr $ffd2
+    jsr $ffd2
+    lda #'0'
+    jsr $ffd2
+    rts
+
+.not_zero:
+   sta .value
+   ldy #$01
+   sta .nonzero_digit_printed
+
+.hundreds:
+    ldx #$00
+-   sec
+    sbc #100
+    bcc .print_hundreds
+    sta .value
+    inx
+    jmp -
+
+.print_hundreds:
+    jsr .print_digit_in_x
+
+.tens:
+    lda .value
+    ldx #$00
+-   sec
+    sbc #10
+    bcc .print_tens
+    sta .value
+    inx
+    jmp -
+
+.print_tens:
+    jsr .print_digit_in_x
+
+.print_ones:
+    lda .value
+    tax
+    jsr .print_digit_in_x
+
+    rts
+
+.print_digit_in_x:
+    cpx #$00
+    bne +
+
+    lda .nonzero_digit_printed
+    beq +
+
+    lda #' '
+    jsr $ffd2
+
+    rts
+
++   lda .digits,x
+    jsr $ffd2
+
+    lda #$00
+    sta .nonzero_digit_printed
+    rts
+
+.value: !byte $00
+.nonzero_digit_printed: !byte $01
+.digits: !pet "0123456789"
 }
 
 ascii2petscii:
