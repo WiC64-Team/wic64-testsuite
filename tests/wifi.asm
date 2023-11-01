@@ -1,4 +1,4 @@
-test_wifi_info !zone test_wifi_info {
+test_wifi !zone test_wifi {
 
 .restart
     jsr clrhome

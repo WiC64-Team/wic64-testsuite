@@ -28,6 +28,7 @@ key_three !byte %11111101, %00000001
 key_four  !byte %11111101, %00001000
 key_five  !byte %11111011, %00000001
 key_six   !byte %11111011, %00001000
+key_seven !byte %11110111, %00000001
 key_stop  !byte %01111111, %10000000
 
 setup !zone setup {
@@ -111,7 +112,7 @@ menu !zone menu {
 +   +scan key_two
     beq +
 
-    jsr test_wifi_info
+    jsr test_wifi
     jmp menu
 
 +   +scan key_three
@@ -135,6 +136,12 @@ menu !zone menu {
 +   +scan key_six
     beq +
 
+    jsr test_frequency
+    jmp menu
+
++   +scan key_seven
+    beq +
+
     +wic64_return_to_portal
     jmp menu
 
@@ -149,15 +156,17 @@ menu !zone menu {
 !pet ron, "3", roff, " Http POST request", $0d
 !pet ron, "4", roff, " Large Http POST request", $0d
 !pet ron, "5", roff, " Get firmware version", $0d
-!pet ron, "6", roff, " Return to portal", $0d
+!pet ron, "6", roff, " High command frequency", $0d
+!pet ron, "7", roff, " Return to portal", $0d
 !byte $00
 }
 
 !src "tests/echo.asm"
-!src "tests/wifi_info.asm"
+!src "tests/wifi.asm"
 !src "tests/post.asm"
 !src "tests/version.asm"
 !src "tests/extended.asm"
+!src "tests/frequency.asm"
 
 verify_error_text
 !pet red, "          => Verify error <=", green, $0d, $0d, $00
@@ -180,7 +189,7 @@ request
 request_api  !text "R"
 request_id   !byte $00
 request_size !word $0000
-request_data ; Up to 16kb of random payload data
+request_data ; Up to 16kb of payload data
 
 * = * + $4000
 
