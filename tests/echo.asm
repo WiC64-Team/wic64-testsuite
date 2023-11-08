@@ -68,7 +68,7 @@ test_echo !zone test_echo {
     lda #$02
     sta wic64_timeout
 
-    +wic64_branch_on_timeout .timed_out
+    +wic64_set_timeout_handler .timed_out
 
     +wic64_initialize
 
@@ -81,6 +81,8 @@ test_echo !zone test_echo {
     +wic64_receive response
 
     +wic64_finalize
+
+    +wic64_unset_timeout_handler
     rts
 
 .timed_out

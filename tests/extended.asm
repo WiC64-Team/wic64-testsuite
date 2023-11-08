@@ -33,7 +33,7 @@ test_extended !zone test_extended {
     sta direction
 
     +wic64_set_timeout $04
-    +wic64_branch_on_timeout .timeout
+    +wic64_set_timeout_handler .timeout
 
     +wic64_initialize
     +wic64_send_header extended_post_request
@@ -69,6 +69,8 @@ test_extended !zone test_extended {
     bne -
 
     +wic64_finalize
+
+    +wic64_unset_timeout_handler
 
     jmp .repeat
 
