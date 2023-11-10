@@ -204,12 +204,12 @@ status_post !zone status_post {
 .task !16 $0000
 }
 
-post_url_request: !byte "R", $28, <post_url_length, >post_url_length
+post_url_request: !byte "R", WIC64_HTTP_POST_URL, <post_url_length, >post_url_length
 post_url !text "http://x.wic64.net/test/post-echo.php"
 post_url_end
 
 post_url_length = post_url_end - post_url
 
-status_request: !byte "R", $2a, $01, $00, $00
+status_request: !byte "R", WIC64_GET_STATUS_MESSAGE, $01, $00, $00
 
 } // !zone test_post

@@ -10,7 +10,7 @@ test_version !zone test_version {
     sta request_size
     sta request_size+1
 
-    lda #$00
+    lda #WIC64_GET_VERSION_STRING
     sta request_id
 
     jsr .get_version
@@ -20,7 +20,7 @@ test_version !zone test_version {
 +   +print_ascii response
     +paragraph
 
-    lda #$26
+    lda #WIC64_GET_VERSION_NUMBERS
     sta request_id
 
     jsr .get_version

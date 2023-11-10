@@ -4,7 +4,7 @@ test_frequency !zone test_frequency {
     jsr clrhome
     +print .text
 
-    lda #$fe
+    lda #WIC64_ECHO
     sta request_id
     lda #$01
     sta request_size

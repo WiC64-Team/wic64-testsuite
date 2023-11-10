@@ -62,7 +62,7 @@ test_echo !zone test_echo {
 }
 
 .echo !zone echo {
-    lda #$fe
+    lda #WIC64_ECHO
     sta request_id
 
     lda #$02

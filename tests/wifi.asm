@@ -5,7 +5,7 @@ test_wifi !zone test_wifi {
     +print .text
 
     +print .text_ssid
-    lda #$10
+    lda #WIC64_GET_SSID
     sta request_id
 
     jsr get_info
@@ -16,7 +16,7 @@ test_wifi !zone test_wifi {
     +newline
 
     +print .text_rssi
-    lda #$11
+    lda #WIC64_GET_RSSI
     sta request_id
 
     jsr get_info
@@ -27,7 +27,7 @@ test_wifi !zone test_wifi {
     +newline
 
     +print .text_ip
-    lda #$06
+    lda #WIC64_GET_IP
     sta request_id
 
     jsr get_info
@@ -38,7 +38,7 @@ test_wifi !zone test_wifi {
     +newline
 
     +print .text_mac
-    lda #$14
+    lda #WIC64_GET_MAC
     sta request_id
 
     jsr get_info

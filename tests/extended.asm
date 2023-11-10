@@ -182,7 +182,7 @@ direction: !byte $00
 
 } ; end of !zone test_extended
 
-extended_post_request: !byte "E", $2b
+extended_post_request: !byte "E", WIC64_HTTP_POST_DATA
 extended_post_request_size: !byte $00, $00, $02, $00 ; $20000 = 128kb
 
 
