@@ -15,7 +15,6 @@ roff = $92
 * = $0810
 jmp setup
 
-wic64_include_return_to_portal = 1
 !src "wic64.h"
 !src "wic64.asm"
 
@@ -139,12 +138,6 @@ menu !zone menu {
     jsr test_frequency
     jmp menu
 
-+   +scan key_seven
-    beq +
-
-    +wic64_return_to_portal
-    jmp menu
-
 +   jmp .scan
 
 .menu_title
@@ -157,7 +150,6 @@ menu !zone menu {
 !pet ron, "4", roff, " Large Http POST request", $0d
 !pet ron, "5", roff, " Get firmware version", $0d
 !pet ron, "6", roff, " High command frequency", $0d
-!pet ron, "7", roff, " Return to portal", $0d
 !byte $00
 }
 
