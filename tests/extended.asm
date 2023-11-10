@@ -145,7 +145,7 @@ status_extended !zone status_extended {
     lda iterations
     jsr hexprint
 
-    +plot 0, 17
+    +plot 0, 19
     rts
 
 .kb !byte $00
@@ -160,6 +160,8 @@ status_extended !zone status_extended {
 !pet $0d
 !pet "-- This test should run indefinitely --", $0d
 !pet $0d
+!pet "The server may still cause timeouts or", $0d
+!pet "or errors occasionally.", $0d
 !pet $0d
 !pet "If the ESP is reset, this test should", $0d
 !pet "time out after approx. four seconds.", $0d
