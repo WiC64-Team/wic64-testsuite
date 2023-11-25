@@ -63,10 +63,18 @@ setup !zone setup {
 
 nmi !zone nmi {
     +scan key_stop
-    beq .menu
+    beq .abort
 
 .quit
     +jmp_via_rti quit
+
+.abort
+    lda abort_with_delay
+    bne .menu
+    jsr clrhome
+    +print aborting_text
+    lda #$08
+    jsr delay
 
 .menu
    +jmp_via_rti menu
@@ -97,6 +105,9 @@ menu !zone menu {
     +print .menu_title
     +paragraph
     +print .menu_text
+
+    lda #$01
+    sta abort_with_delay
 
 .scan:
     +scan key_none
@@ -175,6 +186,10 @@ restart_or_return_text
 restore_text
 !pet " -- Press RESTORE to return to menu --", $00
 
+aborting_text
+!pet "Aborting test, please wait...", $00
+
+abort_with_delay !byte $00
 iterations !byte $00, $00, $00, $00
 
 request

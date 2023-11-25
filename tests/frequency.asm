@@ -16,6 +16,9 @@ test_frequency !zone test_frequency {
     lda #$02
     sta wic64_timeout
 
+    lda #$00
+    sta abort_with_delay
+
 -   +wic64_execute request, response
     bcs .timed_out
     jmp -

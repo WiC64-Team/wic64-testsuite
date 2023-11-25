@@ -11,6 +11,9 @@ test_post !zone test_post {
     sta iterations+1
     sta iterations+2
 
+    lda #$00
+    sta abort_with_delay
+
     +wic64_execute post_url_request, response
     bcs .timed_out
     bne .error
@@ -193,7 +196,7 @@ status_post !zone status_post {
 !pet "-- This test should run indefinitely --", $0d
 !pet $0d
 !pet "The server may still cause timeouts or", $0d
-!pet "or errors occasionally.", $0d
+!pet "errors occasionally.", $0d
 !pet $0d
 !pet "If the ESP is reset, this test should", $0d
 !pet "time out after approx. four seconds.", $0d

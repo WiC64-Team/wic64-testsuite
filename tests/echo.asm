@@ -11,6 +11,9 @@ test_echo !zone test_echo {
     sta iterations+1
     sta iterations+2
 
+    lda #$00
+    sta abort_with_delay
+
 .next_iteration
     +inc24 iterations
     jsr .randomize

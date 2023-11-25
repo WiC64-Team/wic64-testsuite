@@ -300,6 +300,21 @@ print_dec !zone print_dec {
 .digits: !pet "0123456789"
 }
 
+delay: !zone delay {
+    sta .z
+--- ldy #$00
+--  ldx #$00
+-   dex
+    bne -
+    dey
+    bne --
+    dec .z
+    bne ---
+    rts
+
+.z: !byte $00
+}
+
 ascii2petscii:
 !for i, 0, 255 { !byte i }
 
